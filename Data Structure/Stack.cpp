@@ -43,9 +43,7 @@ template<class type>
 bool Stack<type>::push(type e)
 {
     if (tot == MAX_SIZE - 1)
-    {
         return false;
-    }
     ele[++tot] = e;
     return true;
 }
@@ -55,9 +53,7 @@ template<class type>
 bool Stack<type>::pop()
 {
     if (empty())
-    {
         return false;
-    }
     ele[tot--] = 0;
     return true;
 }
@@ -67,9 +63,7 @@ template<class type>
 void Stack<type>::print()
 {
     for (int i = 1; i <= tot; ++i)
-    {
         std::cout << ele[i] << " ";
-    }
     puts("");
 }
 
@@ -100,9 +94,7 @@ int main()
     Stack<int> st;
     int n;
     while (scanf("%d", &n))
-    {
         st.push(n);
-    }
 
     while (!st.empty())
     {

@@ -43,9 +43,7 @@ template<class type>
 bool Queue<type>::push(type e)
 {
     if (end == MAX_SIZE - 1)
-    {
         return false;
-    }
     ele[++end] = e;
     return true;
 }
@@ -55,9 +53,7 @@ template<class type>
 bool Queue<type>::pop()
 {
     if (empty())
-    {
         return false;
-    }
     ele[fnt++] = 0;
     return true;
 }
@@ -67,9 +63,7 @@ template<class type>
 void Queue<type>::print()
 {
     for (int i = fnt + 1; i <= end; ++i)
-    {
         std::cout << ele[i] << " ";
-    }
     puts("");
 }
 
@@ -100,9 +94,7 @@ int main()
     Queue<int> cq;
     int n;
     while (scanf("%d", &n))
-    {
         cq.push(n);
-    }
 
     while (!cq.empty())
     {

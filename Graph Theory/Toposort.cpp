@@ -52,9 +52,7 @@ Graph<type>::Graph(int _size)
 {
     size = _size;
     for (int i = 1; i <= size; ++i)
-    {
         in[i] = 0;
-    }
 }
 
 // 添加一条有向边
@@ -70,24 +68,16 @@ bool Graph<type>::toposort()
 {
     // 计算每个点的入度
     for (int i = 1; i <= size; ++i)
-    {
         for (int j = 0; j < int(g[i].size()); ++j)
-        {
             ++in[g[i][j].to];
-        }
-    }
 
     // 维持入度为0的点
     std::queue<type> q;
     // std::priority_queue<type, std::vector<type>, std::greater<type>> q;
     std::vector<type> num;
     for (int i = 1; i <= size; ++i)
-    {
         if (in[i] == 0)
-        {
             q.push(i);
-        }
-    }
 
     while (!q.empty())
     {
@@ -100,9 +90,7 @@ bool Graph<type>::toposort()
             int v = g[u][i].to;
             --in[v];
             if (in[v] == 0)
-            {
                 q.push(v);
-            }
         }
     }
 
@@ -111,9 +99,7 @@ bool Graph<type>::toposort()
     {
         // 输出
         for (int i = 0; i < size; ++i)
-        {
             std::cout << num[i] << " ";
-        }
         return true;
     }
     return false;

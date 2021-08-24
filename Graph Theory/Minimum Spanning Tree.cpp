@@ -63,9 +63,7 @@ template<class type>
 int Kruskal<type>::find(int u)
 {
     if (fa[u] == u)
-    {
         return u;
-    }
     return fa[u] = find(fa[u]);
 }
 
@@ -97,9 +95,7 @@ type Kruskal<type>::kruskal()
     int tot = 0;
     std::sort(g + 1, g + edge + 1, cmp);
     for (int i = 1; i <= node; ++i)
-    {
         fa[i] = i;
-    }
 
     for (int i = 1; i <= edge; ++i)
     {
@@ -110,9 +106,7 @@ type Kruskal<type>::kruskal()
             fa[find(e.from)] = find(e.to);
         }
         if (++tot == edge - 1)
-        {
             break;
-        }
     }
     return w;
 }
@@ -168,12 +162,8 @@ type Prim<type>::prim()
 
         dis[i] = INF;
         for (int j = 0; j < int(g[i].size()); ++j)
-        {
             if (g[i][j].to == now)
-            {
                 dis[i] = std::min(dis[i], g[i][j].dis);
-            }
-        }
     }
 
     for (int i = 1; i < node; ++i)
@@ -190,15 +180,9 @@ type Prim<type>::prim()
         }
         w += minn;
         for (int j = 1; j <= node; ++j)
-        {
             for (int k = 0; !vis[j] && k < int(g[now].size()); ++k)
-            {
                 if (dis[g[now][k].to] > g[now][k].dis)
-                {
                     dis[g[now][k].to] = g[now][k].dis;
-                }
-            }
-        }
     }
     return w;
 }

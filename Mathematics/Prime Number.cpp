@@ -38,21 +38,15 @@ bool millerRabin(long long n)
     {
         long long a = rand() % (n - 2) + 2, b = pow(a, u, n);
         if (b == 1 || b == n - 1)
-        {
             continue;
-        }
         for (j = 0; j < t; ++j)
         {
             b = b * b % n;
             if (b == n - 1)
-            {
                 break;
-            }
         }
         if (j >= t)
-        {
             return false;
-        }
     }
     return true;
 }
@@ -65,20 +59,14 @@ int euler(long long n)
     for (int i = 2; i <= n; ++i)
     {
         if (!vis[i])
-        {
             prime[++tot] = i;
-        }
         for (int j = 1; j <= tot; ++j)
         {
             if (i * prime[j] > n)
-            {
                 break;
-            }
             vis[i * prime[j]] = true;
             if (i % prime[j] == 0)
-            {
                 break;
-            }
         }
     }
     for (int i = 1; i <= tot; ++i)

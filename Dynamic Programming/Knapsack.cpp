@@ -14,17 +14,11 @@ int zeroOne()
     int n, W, w[MAX_SIZE], v[MAX_SIZE], f[MAX_SIZE] = {};
     scanf("%d %d", &n, &W);
     for (int i = 1; i <= n; ++i)
-    {
         scanf("%d %d", &w[i], &v[i]);
-    }
 
     for (int i = 1; i <= n; ++i)
-    {
         for (int j = W; j >= w[i]; --j)
-        {
             f[j] = std::max(f[j], f[j - w[i]] + v[i]);
-        }
-    }
     return f[W];
 }
 // 完全背包
@@ -33,17 +27,11 @@ int complete()
     int n, W, w[MAX_SIZE], v[MAX_SIZE], f[MAX_SIZE] = {};
     scanf("%d %d", &n, &W);
     for (int i = 1; i <= n; ++i)
-    {
         scanf("%d %d", &w[i], &v[i]);
-    }
 
     for (int i = 1; i <= n; ++i)
-    {
         for (int j = w[i]; j <= W; ++j)
-        {
             f[j] = std::max(f[j], f[j - w[i]] + v[i]);
-        }
-    }
     return f[W];
 }
 // 多重背包
@@ -69,12 +57,8 @@ int multiple()
     }
 
     for (int i = 1; i <= tot; ++i)
-    {
         for (int j = W; j >= w[i]; --j)
-        {
             f[j] = std::max(f[j], f[j - w[i]] + v[i]);
-        }
-    }
     return f[W];
 }
 

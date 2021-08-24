@@ -65,22 +65,16 @@ template<class type>
 bool Heap<type>::push(type e)
 {
     if (tot == MAX_SIZE - 1)
-    {
         return false;
-    }
     ele[++tot] = e;
 
     // 自下而上调整
     for (int i = tot; i != 1; i = dad(i))
     {
         if (ele[i] > ele[dad(i)])
-        {
             std::swap(ele[i], ele[dad(i)]);
-        }
         else
-        {
             break;
-        }
     }
     return true;
 }
@@ -90,9 +84,7 @@ template<class type>
 bool Heap<type>::pop()
 {
     if (empty())
-    {
         return false;
-    }
     std::swap(ele[1], ele[tot]);
     ele[tot--] = 0;
 
@@ -106,9 +98,7 @@ bool Heap<type>::pop()
             i = tar;
         }
         else
-        {
             break;
-        }
     }
     return true;
 }

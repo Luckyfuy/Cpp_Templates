@@ -34,9 +34,7 @@ Floyd<type>::Floyd(int _node)
     node = _node;
     memset(g, 0x3f, sizeof(g));
     for (int i = 1; i <= node; ++i)
-    {
         g[i][i] = 0;
-    }
     flag = false;
 }
 
@@ -55,18 +53,10 @@ type Floyd<type>::floyd(int u, int v)
     if (!flag)
     {
         for (int k = 1; k <= node; ++k)
-        {
             for (int i = 1; i <= node; ++i)
-            {
                 for (int j = 1; j <= node; ++j)
-                {
                     if (i != j && i != k && j != k)
-                    {
                         g[i][j] = std::min(g[i][j], g[i][k] + g[k][j]);
-                    }
-                }
-            }
-        }
         flag = true;
     }
     return g[u][v];
@@ -201,19 +191,13 @@ int main()
     }
 
     for (int i = 1; i <= m; ++i)
-    {
         printf("%d ", floyd.floyd(s, i));
-    }
     puts("");
     for (int i = 1; i <= m; ++i)
-    {
         printf("%d ", g.dijkstra(i));
-    }
     puts("");
     for (int i = 1; i <= m; ++i)
-    {
         printf("%d ", g.spfa(i));
-    }
     puts("");
 
     setbuf(stdin, nullptr);

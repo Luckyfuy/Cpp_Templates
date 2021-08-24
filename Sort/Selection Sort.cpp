@@ -39,16 +39,12 @@ int main()
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))
-    {
         num.push_back(n);
-    }
 
     selectionSort(num);
 
     for (int i = 0; i < int(num.size()); ++i)
-    {
         printf("%d ", num[i]);
-    }
     puts("");
 
     setbuf(stdin, nullptr);

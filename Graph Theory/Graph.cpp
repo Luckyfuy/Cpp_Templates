@@ -51,9 +51,7 @@ template<class type>
 Graph<type>::Graph()
 {
     for (int i = 1; i <= MAX_SIZE; ++i)
-    {
         vis[i] = false;
-    }
 }
 
 // 添加一条有向边
@@ -78,12 +76,8 @@ void Graph<type>::dfs(int u)
     std::cout << u << " ";
     vis[u] = true;
     for (int v = 0; v < int(g[u].size()); ++v)
-    {
         if (!vis[g[u][v].to])
-        {
             dfs(g[u][v].to);
-        }
-    }
 }
 
 // 宽度优先搜索
@@ -120,24 +114,16 @@ int main()
         int u, v, w;
         scanf("%d %d %d %d", &flag, &u, &v, &w);
         if (flag)
-        {
             g.drtInsert(u, v, w);
-        }
         else
-        {
             g.undrtInsert(u, v, w);
-        }
     }
 
     scanf("%d %d", &flag, &n);
     if (flag)
-    {
         g.dfs(n);
-    }
     else
-    {
         g.bfs(n);
-    }
     puts("");
 
     setbuf(stdin, nullptr);

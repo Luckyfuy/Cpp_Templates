@@ -18,17 +18,11 @@ inline void read(type &n)
 
     char ch = getchar();
     for (; !isdigit(ch); ch = getchar())
-    {
         if (ch == '-')
-        {
             f = -1;
-        }
-    }
 
     for (; isdigit(ch); ch = getchar())
-    {
         n = n * 10 + ch - '0';
-    }
 
     if (ch == '.')
     {
@@ -46,9 +40,7 @@ inline void read(char *str)
     char ch = getchar();
     for (; blank(ch); ch = getchar());
     for (; !blank(ch); ch = getchar())
-    {
         *str++ = ch;
-    }
     *str = 0;
 }
 inline void read(char &ch)
@@ -73,9 +65,7 @@ inline void write(type n)
     }
     while (n);
     while (top)
-    {
         putchar(st[top--] + '0');
-    }
 }
 template<class type>
 inline void write(type n, char ch)

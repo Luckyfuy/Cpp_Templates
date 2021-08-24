@@ -31,9 +31,7 @@ template<class type>
 UnionFind<type>::UnionFind()
 {
     for (int i = 1; i < MAX_SIZE; ++i)
-    {
         ele[i] = i;
-    }
 }
 
 // 合并a和b所在的集合
@@ -48,9 +46,7 @@ template<class type>
 type UnionFind<type>::find(type e)
 {
     if (ele[e] == e)
-    {
         return e;
-    }
     return ele[e] = find(ele[e]);
 }
 

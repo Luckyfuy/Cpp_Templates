@@ -15,14 +15,10 @@ void quickSort(std::vector<type> &num, int left, int right)
     {
         // 查找左半部分比中间数大的数
         while (num[i] < pivot)
-        {
             ++i;
-        }
         // 查找左半部分比中间数小的数
         while (num[j] > pivot)
-        {
             --j;
-        }
         // 若左小右大，则交换2个数
         if (i <= j)
         {
@@ -36,13 +32,9 @@ void quickSort(std::vector<type> &num, int left, int right)
 
     // 递归继续排序左右两部分
     if (left < j)
-    {
         quickSort(num, left, j);
-    }
     if (right > i)
-    {
         quickSort(num, i, right);
-    }
 }
 
 // 测试
@@ -51,16 +43,12 @@ int main()
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))
-    {
         num.push_back(n);
-    }
 
     quickSort(num, 0, num.size() - 1);
 
     for (int i = 0; i < int(num.size()); ++i)
-    {
         printf("%d ", num[i]);
-    }
     puts("");
 
     setbuf(stdin, nullptr);

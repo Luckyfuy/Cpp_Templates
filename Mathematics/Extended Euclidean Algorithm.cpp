@@ -35,12 +35,8 @@ long long inv(long long a, long long p)
 {
     long long power = p - 2, res = 1;
     for (; power != 0; power >>= 1, a = (a * a) % p)
-    {
         if (power & 1)
-        {
             res = (a * res) % p;
-        }
-    }
     return res;
 }
 

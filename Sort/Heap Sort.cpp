@@ -64,22 +64,16 @@ template<class type>
 bool Heap<type>::push(type e)
 {
     if (tot == MAX_SIZE - 1)
-    {
         return false;
-    }
     ele[++tot] = e;
 
     // 自下而上调整
     for (int i = tot; i != 1; i = dad(i))
     {
         if (ele[i] > ele[dad(i)])
-        {
             std::swap(ele[i], ele[dad(i)]);
-        }
         else
-        {
             break;
-        }
     }
     return true;
 }
@@ -89,9 +83,7 @@ template<class type>
 bool Heap<type>::pop()
 {
     if (empty())
-    {
         return false;
-    }
     std::swap(ele[1], ele[tot]);
     ele[tot--] = 0;
 
@@ -105,9 +97,7 @@ bool Heap<type>::pop()
             i = tar;
         }
         else
-        {
             break;
-        }
     }
     return true;
 }
@@ -139,9 +129,7 @@ void HeapSort(std::vector<type> &num)
 {
     Heap<type> hp;
     for (int i = 0; i < int(num.size()); ++i)
-    {
         hp.push(num[i]);
-    }
 
     for (int i = int(num.size()) - 1; i >= 0; --i)
     {
@@ -156,16 +144,12 @@ int main()
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))
-    {
         num.push_back(n);
-    }
 
     HeapSort(num);
 
     for (int i = 0; i < int(num.size()); ++i)
-    {
         printf("%d ", num[i]);
-    }
     puts("");
 
     setbuf(stdin, nullptr);

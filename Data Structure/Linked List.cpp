@@ -71,9 +71,7 @@ Node<type>* LinkedList<type>::getEnd()
 {
     Node<type> *ptr = head;
     while (ptr -> nxt != nullptr)
-    {
         ptr = ptr -> nxt;
-    }
     return ptr;
 }
 
@@ -82,14 +80,10 @@ template<class type>
 Node<type>* LinkedList<type>::locate(int pos)
 {
     if (pos < 0 || pos > size())
-    {
         return nullptr;
-    }
     Node<type> *ptr = head;
     for (int i = 1; i <= pos; ++i)
-    {
         ptr = ptr -> nxt;
-    }
     return ptr;
 }
 
@@ -99,9 +93,7 @@ void LinkedList<type>::ins(type data)
 {
     Node<type> *node = new Node<type>(data);
     if (head == nullptr)
-    {
         head = node;
-    }
     else
     {
         Node<type> *ptr = getEnd();
@@ -114,9 +106,7 @@ template<class type>
 void LinkedList<type>::ins(type data, int pos)
 {
     if (pos < 1 || pos > size())
-    {
         return;
-    }
     Node<type> *node = new Node<type>(data), *ptr = locate(pos - 1);
     node -> nxt = ptr -> nxt;
     ptr -> nxt = node;
@@ -127,9 +117,7 @@ template<class type>
 void LinkedList<type>::del()
 {
     if (head -> nxt == nullptr)
-    {
         return;
-    }
     Node<type> *ptr = head, *p = nullptr;
     while (ptr -> nxt != nullptr)
     {
@@ -145,9 +133,7 @@ template<class type>
 void LinkedList<type>::del(int pos)
 {
     if (pos < 1 || pos > size())
-    {
         return;
-    }
     Node<type> *ptr = locate(pos - 1), *p = ptr -> nxt;
     ptr -> nxt = p -> nxt;
     delete p;

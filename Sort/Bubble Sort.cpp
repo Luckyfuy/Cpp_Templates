@@ -37,9 +37,7 @@ void bubbleSort(std::vector<type> &num)
         border = index;
         // 若已经有序，则停止排序
         if (isSorted)
-        {
             return;
-        }
     }
 }
 
@@ -49,16 +47,12 @@ int main()
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))
-    {
         num.push_back(n);
-    }
 
     bubbleSort(num);
 
     for (int i = 0; i < int(num.size()); ++i)
-    {
         printf("%d ", num[i]);
-    }
     puts("");
 
     setbuf(stdin, nullptr);

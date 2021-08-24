@@ -64,18 +64,12 @@ bool BinaryTree<type>::build(Node<type>*& r)
     type ele;
     std::cin >> ele;
     if (ele == end)
-    {
         return false;
-    }
     r = new Node<type>(ele);
     if (!build(r -> le))
-    {
         r -> le = nullptr;
-    }
     if (!build(r -> rt))
-    {
         r -> rt = nullptr;
-    }
     return true;
 }
 
@@ -97,9 +91,7 @@ template<class type>
 void BinaryTree<type>::preOrder(Node<type>* r)
 {
     if (r == nullptr)
-    {
         return;
-    }
     std::cout << r -> data << " ";
     preOrder(r -> le);
     preOrder(r -> rt);
@@ -110,9 +102,7 @@ template<class type>
 void BinaryTree<type>::inOrder(Node<type>* r)
 {
     if (r == nullptr)
-    {
         return;
-    }
     inOrder(r -> le);
     std::cout << r -> data << " ";
     inOrder(r -> rt);
@@ -123,9 +113,7 @@ template<class type>
 void BinaryTree<type>::postOrder(Node<type>* r)
 {
     if (r == nullptr)
-    {
         return;
-    }
     postOrder(r -> le);
     postOrder(r -> rt);
     std::cout << r -> data << " ";
