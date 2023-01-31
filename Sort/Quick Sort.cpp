@@ -7,12 +7,10 @@
 
 // 快速排序
 template<class type>
-void quickSort(std::vector<type> &num, int left, int right)
-{
+void quickSort(std::vector<type> &num, int left, int right) {
     // 取中间数为基准
     int pivot = num[(left + right) / 2], i = left, j = right;
-    do
-    {
+    do {
         // 查找左半部分比中间数大的数
         while (num[i] < pivot)
             ++i;
@@ -20,8 +18,7 @@ void quickSort(std::vector<type> &num, int left, int right)
         while (num[j] > pivot)
             --j;
         // 若左小右大，则交换2个数
-        if (i <= j)
-        {
+        if (i <= j) {
             std::swap(num[i], num[j]);
 
             ++i;
@@ -38,8 +35,7 @@ void quickSort(std::vector<type> &num, int left, int right)
 }
 
 // 测试
-int main()
-{
+int main() {
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))

@@ -11,8 +11,7 @@ const int MAX_SIZE = 10000, MAX_LOG = 20;
 // ST表
 // 查询最小值
 template<class type>
-class MinST
-{
+class MinST {
     private:
         // 元素
         type f[MAX_SIZE][MAX_LOG];
@@ -28,8 +27,7 @@ class MinST
 
 // 初始化
 template<class type>
-MinST<type>::MinST(std::vector<int> num)
-{
+MinST<type>::MinST(std::vector<int> num) {
     for (int i = 1; i <= int(num.size()); ++i)
         f[i][0] = num[i - 1];
     for (int j = 1; j <= MAX_LOG; ++j)
@@ -42,8 +40,7 @@ MinST<type>::MinST(std::vector<int> num)
 
 // 查询最小值
 template<class type>
-type MinST<type>::query(int l, int r)
-{
+type MinST<type>::query(int l, int r) {
     int len = lg[r - l + 1];
     return std::min(f[l][len], f[r - (1 << len) + 1][len]);
 }
@@ -51,8 +48,7 @@ type MinST<type>::query(int l, int r)
 // ST表
 // 查询最大值
 template<class type>
-class MaxST
-{
+class MaxST {
     private:
         // 元素
         type f[MAX_SIZE][MAX_LOG];
@@ -68,8 +64,7 @@ class MaxST
 
 // 初始化
 template<class type>
-MaxST<type>::MaxST(std::vector<int> num)
-{
+MaxST<type>::MaxST(std::vector<int> num) {
     for (int i = 1; i <= int(num.size()); ++i)
         f[i][0] = num[i - 1];
     for (int j = 1; j <= MAX_LOG; ++j)
@@ -82,20 +77,17 @@ MaxST<type>::MaxST(std::vector<int> num)
 
 // 查询最大值
 template<class type>
-type MaxST<type>::query(int l, int r)
-{
+type MaxST<type>::query(int l, int r) {
     int len = lg[r - l + 1];
     return std::max(f[l][len], f[r - (1 << len) + 1][len]);
 }
 
 // 测试
-int main()
-{
+int main() {
     int n;
     std::vector<int> num;
     scanf("%d", &n);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int t;
         scanf("%d", &t);
         num.push_back(t);
@@ -104,8 +96,7 @@ int main()
     MaxST<int> maxst(num);
 
     scanf("%d", &n);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int l, r;
         scanf("%d %d", &l, &r);
         printf("%d %d\n", minst.query(l, r), maxst.query(l, r));

@@ -7,23 +7,19 @@
 
 // 冒泡排序
 template<class type>
-void bubbleSort(std::vector<type> &num)
-{
+void bubbleSort(std::vector<type> &num) {
     // 记录最后一次交换的位置
     int index = 0;
     // 无序数列的边界，每次比较到这里为止
     int border = num.size() - 1;
 
-    for (int i = 0; i < int(num.size()); ++i)
-    {
+    for (int i = 0; i < int(num.size()); ++i) {
         // 有序标记，每轮初始化为true
         bool isSorted = true;
 
-        for (int j = 0; j < border; ++j)
-        {
+        for (int j = 0; j < border; ++j) {
             // 若数字比后一位数字大，则交换两个数字
-            if (num[j] > num[j + 1])
-            {
+            if (num[j] > num[j + 1]) {
                 std::swap(num[j], num[j + 1]);
 
                 // 因为有元素交换，所以标记变为false
@@ -42,8 +38,7 @@ void bubbleSort(std::vector<type> &num)
 }
 
 // 测试
-int main()
-{
+int main() {
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))

@@ -10,8 +10,7 @@ const int MAX_SIZE = 100000;
 
 // 并查集
 template<class type>
-class UnionFind
-{
+class UnionFind {
     private:
         // 元素
         type ele[MAX_SIZE];
@@ -28,23 +27,20 @@ class UnionFind
 
 // 初始化
 template<class type>
-UnionFind<type>::UnionFind()
-{
+UnionFind<type>::UnionFind() {
     for (int i = 1; i < MAX_SIZE; ++i)
         ele[i] = i;
 }
 
 // 合并a和b所在的集合
 template<class type>
-void UnionFind<type>::uni(type a, type b)
-{
+void UnionFind<type>::uni(type a, type b) {
     ele[find(a)] = find(b);
 }
 
 // 查询e所属集合
 template<class type>
-type UnionFind<type>::find(type e)
-{
+type UnionFind<type>::find(type e) {
     if (ele[e] == e)
         return e;
     return ele[e] = find(ele[e]);
@@ -52,28 +48,24 @@ type UnionFind<type>::find(type e)
 
 // a和b是否在同一集合
 template<class type>
-bool UnionFind<type>::ask(type a, type b)
-{
+bool UnionFind<type>::ask(type a, type b) {
     return find(a) == find(b);
 }
 
 // 测试
-int main()
-{
+int main() {
     UnionFind<int> uf;
     int m, n;
     scanf("%d %d", &m, &n);
 
-    for (int i = 1; i <= m; ++i)
-    {
+    for (int i = 1; i <= m; ++i) {
         int a, b;
         scanf("%d %d", &a, &b);
         uf.uni(a, b);
     }
 
     std::cout.setf(std::ios_base::boolalpha);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int a, b;
         scanf("%d %d", &a, &b);
         std::cout << uf.ask(a, b) << std::endl;

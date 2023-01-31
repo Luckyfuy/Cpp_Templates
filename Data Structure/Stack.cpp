@@ -10,8 +10,7 @@ const int MAX_SIZE = 100000;
 
 // 栈
 template<class type>
-class Stack
-{
+class Stack {
     private:
         // 元素
         type ele[MAX_SIZE];
@@ -33,15 +32,13 @@ class Stack
 
 // 初始化
 template<class type>
-Stack<type>::Stack()
-{
+Stack<type>::Stack() {
     tot = 0;
 }
 
 // 把元素压入栈
 template<class type>
-bool Stack<type>::push(type e)
-{
+bool Stack<type>::push(type e) {
     if (tot == MAX_SIZE - 1)
         return false;
     ele[++tot] = e;
@@ -50,8 +47,7 @@ bool Stack<type>::push(type e)
 
 // 把栈顶元素弹出
 template<class type>
-bool Stack<type>::pop()
-{
+bool Stack<type>::pop() {
     if (empty())
         return false;
     ele[tot--] = 0;
@@ -60,8 +56,7 @@ bool Stack<type>::pop()
 
 // 输出栈内所有元素
 template<class type>
-void Stack<type>::print()
-{
+void Stack<type>::print() {
     for (int i = 1; i <= tot; ++i)
         std::cout << ele[i] << " ";
     puts("");
@@ -69,35 +64,30 @@ void Stack<type>::print()
 
 // 是否为空栈
 template<class type>
-bool Stack<type>::empty()
-{
+bool Stack<type>::empty() {
     return tot == 0;
 }
 
 // 返回栈顶元素
 template<class type>
-type Stack<type>::top()
-{
+type Stack<type>::top() {
     return ele[tot];
 }
 
 // 返回栈内元素个数
 template<class type>
-int Stack<type>::size()
-{
+int Stack<type>::size() {
     return tot;
 }
 
 // 测试
-int main()
-{
+int main() {
     Stack<int> st;
     int n;
     while (scanf("%d", &n))
         st.push(n);
 
-    while (!st.empty())
-    {
+    while (!st.empty()) {
         st.print();
         printf("Top: %d\n", st.top());
         printf("Size: %d\n", st.size());

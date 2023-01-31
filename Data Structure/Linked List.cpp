@@ -7,8 +7,7 @@
 
 // 节点
 template<class type>
-struct Node
-{
+struct Node {
     // 数据
     type data;
     // 指向下一个节点的指针
@@ -20,16 +19,14 @@ struct Node
 
 // 初始化
 template<class type>
-Node<type>::Node(type _data)
-{
+Node<type>::Node(type _data) {
     data = _data;
     nxt = nullptr;
 }
 
 // 单链表
 template<class type>
-class LinkedList
-{
+class LinkedList {
     private:
         // 头节点
         Node<type> *head;
@@ -53,22 +50,19 @@ class LinkedList
 
 // 初始化
 template<class type>
-LinkedList<type>::LinkedList()
-{
+LinkedList<type>::LinkedList() {
     head = nullptr;
 }
 
 // 获取头节点
 template<class type>
-Node<type>* LinkedList<type>::getHead()
-{
+Node<type>* LinkedList<type>::getHead() {
     return head;
 }
 
 // 获取尾节点
 template<class type>
-Node<type>* LinkedList<type>::getEnd()
-{
+Node<type>* LinkedList<type>::getEnd() {
     Node<type> *ptr = head;
     while (ptr -> nxt != nullptr)
         ptr = ptr -> nxt;
@@ -77,8 +71,7 @@ Node<type>* LinkedList<type>::getEnd()
 
 // 获取第pos个节点
 template<class type>
-Node<type>* LinkedList<type>::locate(int pos)
-{
+Node<type>* LinkedList<type>::locate(int pos) {
     if (pos < 0 || pos > size())
         return nullptr;
     Node<type> *ptr = head;
@@ -89,13 +82,11 @@ Node<type>* LinkedList<type>::locate(int pos)
 
 // 插入节点到末尾
 template<class type>
-void LinkedList<type>::ins(type data)
-{
+void LinkedList<type>::ins(type data) {
     Node<type> *node = new Node<type>(data);
     if (head == nullptr)
         head = node;
-    else
-    {
+    else {
         Node<type> *ptr = getEnd();
         ptr -> nxt = node;
     }
@@ -103,8 +94,7 @@ void LinkedList<type>::ins(type data)
 
 // 插入节点到位置pos
 template<class type>
-void LinkedList<type>::ins(type data, int pos)
-{
+void LinkedList<type>::ins(type data, int pos) {
     if (pos < 1 || pos > size())
         return;
     Node<type> *node = new Node<type>(data), *ptr = locate(pos - 1);
@@ -114,13 +104,11 @@ void LinkedList<type>::ins(type data, int pos)
 
 // 删除末尾节点
 template<class type>
-void LinkedList<type>::del()
-{
+void LinkedList<type>::del() {
     if (head -> nxt == nullptr)
         return;
     Node<type> *ptr = head, *p = nullptr;
-    while (ptr -> nxt != nullptr)
-    {
+    while (ptr -> nxt != nullptr) {
         p = ptr;
         ptr = ptr -> nxt;
     }
@@ -130,8 +118,7 @@ void LinkedList<type>::del()
 
 // 删除第pos个节点
 template<class type>
-void LinkedList<type>::del(int pos)
-{
+void LinkedList<type>::del(int pos) {
     if (pos < 1 || pos > size())
         return;
     Node<type> *ptr = locate(pos - 1), *p = ptr -> nxt;
@@ -141,12 +128,10 @@ void LinkedList<type>::del(int pos)
 
 // 返回节点个数
 template<class type>
-int LinkedList<type>::size()
-{
+int LinkedList<type>::size() {
     int len = -1;
     Node<type> *ptr = head;
-    while (ptr != nullptr)
-    {
+    while (ptr != nullptr) {
         ++len;
         ptr = ptr -> nxt;
     }
@@ -155,11 +140,9 @@ int LinkedList<type>::size()
 
 // 遍历链表并输出每个节点的值
 template<class type>
-void LinkedList<type>::print()
-{
+void LinkedList<type>::print() {
     Node<type> *ptr = head;
-    while (ptr -> nxt != nullptr)
-    {
+    while (ptr -> nxt != nullptr) {
         ptr = ptr -> nxt;
         printf("%d ", ptr -> data);
     }
@@ -168,41 +151,35 @@ void LinkedList<type>::print()
 
 // 返回链表是否为空
 template<class type>
-bool LinkedList<type>::empty()
-{
+bool LinkedList<type>::empty() {
     return head == nullptr || head -> nxt == nullptr;
 }
 
 // 测试
-int main()
-{
+int main() {
     LinkedList<int> lst;
     int m, n;
 
     scanf("%d", &m);
-    for (int i = 1; i <= m; ++i)
-    {
+    for (int i = 1; i <= m; ++i) {
         scanf("%d", &n);
         lst.ins(n);
         lst.print();
         printf("%d\n", lst.size());
     }
 
-    // while (scanf("%d %d", &m, &n))
-    // {
+    // while (scanf("%d %d", &m, &n)) {
     //     lst.ins(n, m);
     //     lst.print();
     // }
 
-    // while (lst.size() > 0)
-    // {
+    // while (lst.size() > 0) {
     //     lst.del();
     //     lst.print();
     //     printf("%d\n", lst.size());
     // }
 
-    // while (scanf("%d", &n))
-    // {
+    // while (scanf("%d", &n)) {
     //     lst.del(n);
     //     lst.print();
     //     printf("%d\n", lst.size());

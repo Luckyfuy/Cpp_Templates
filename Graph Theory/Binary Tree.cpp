@@ -7,8 +7,7 @@
 
 // 节点
 template<class type>
-struct Node
-{
+struct Node {
     // 数据
     type data;
     // 指向子节点的指针
@@ -20,16 +19,14 @@ struct Node
 
 // 初始化
 template<class type>
-Node<type>::Node(type _data)
-{
+Node<type>::Node(type _data) {
     data = _data;
     le = rt = nullptr;
 }
 
 // 二叉树
 template<class type>
-class BinaryTree
-{
+class BinaryTree {
     private:
         // 根节点
         Node<type> *root;
@@ -52,15 +49,13 @@ class BinaryTree
 
 // 初始化
 template<class type>
-BinaryTree<type>::BinaryTree()
-{
+BinaryTree<type>::BinaryTree() {
     root = nullptr;
 }
 
 // 建树
 template<class type>
-bool BinaryTree<type>::build(Node<type>*& r)
-{
+bool BinaryTree<type>::build(Node<type>*& r) {
     type ele;
     std::cin >> ele;
     if (ele == end)
@@ -74,22 +69,19 @@ bool BinaryTree<type>::build(Node<type>*& r)
 }
 
 template<class type>
-bool BinaryTree<type>::build()
-{
+bool BinaryTree<type>::build() {
     return build(root);
 }
 
 // 获取根节点指针
 template<class type>
-Node<type>* BinaryTree<type>::getRoot()
-{
+Node<type>* BinaryTree<type>::getRoot() {
     return root;
 }
 
 // 先序遍历
 template<class type>
-void BinaryTree<type>::preOrder(Node<type>* r)
-{
+void BinaryTree<type>::preOrder(Node<type>* r) {
     if (r == nullptr)
         return;
     std::cout << r -> data << " ";
@@ -99,8 +91,7 @@ void BinaryTree<type>::preOrder(Node<type>* r)
 
 // 中序遍历
 template<class type>
-void BinaryTree<type>::inOrder(Node<type>* r)
-{
+void BinaryTree<type>::inOrder(Node<type>* r) {
     if (r == nullptr)
         return;
     inOrder(r -> le);
@@ -110,8 +101,7 @@ void BinaryTree<type>::inOrder(Node<type>* r)
 
 // 后序遍历
 template<class type>
-void BinaryTree<type>::postOrder(Node<type>* r)
-{
+void BinaryTree<type>::postOrder(Node<type>* r) {
     if (r == nullptr)
         return;
     postOrder(r -> le);
@@ -120,8 +110,7 @@ void BinaryTree<type>::postOrder(Node<type>* r)
 }
 
 // 测试
-int main()
-{
+int main() {
     BinaryTree<int> tree;
     tree.build();
 

@@ -10,8 +10,7 @@ const int MAX_SIZE = 500;
 
 // 图
 template<class type>
-class Floyd
-{
+class Floyd {
     private:
         // 图、节点数
         int g[MAX_SIZE][MAX_SIZE], node;
@@ -29,8 +28,7 @@ class Floyd
 
 // 初始化
 template<class type>
-Floyd<type>::Floyd(int _node)
-{
+Floyd<type>::Floyd(int _node) {
     node = _node;
     memset(g, 0x3f, sizeof(g));
     for (int i = 1; i <= node; ++i)
@@ -40,18 +38,15 @@ Floyd<type>::Floyd(int _node)
 
 // 添加一条有向边
 template<class type>
-void Floyd<type>::insert(int u, int v, type w)
-{
+void Floyd<type>::insert(int u, int v, type w) {
     g[u][v] = w;
 }
 
 // 最短路
 // Floyd算法
 template<class type>
-type Floyd<type>::floyd(int u, int v)
-{
-    if (!flag)
-    {
+type Floyd<type>::floyd(int u, int v) {
+    if (!flag) {
         for (int k = 1; k <= node; ++k)
             for (int i = 1; i <= node; ++i)
                 for (int j = 1; j <= node; ++j)
@@ -64,16 +59,14 @@ type Floyd<type>::floyd(int u, int v)
 
 // 边
 template<class type>
-struct Edge
-{
+struct Edge {
     // 起点、终点、边权
     int from, to;
     type dis;
 
     // 构造函数
     Edge() {}
-    Edge(int _from, int _to, type _dis)
-    {
+    Edge(int _from, int _to, type _dis) {
         from = _from;
         to = _to;
         dis = _dis;
@@ -82,8 +75,7 @@ struct Edge
 
 // 图
 template<class type>
-class Graph
-{
+class Graph {
     private:
         // 起点出发的距离、起点
         int dis[MAX_SIZE], start;
@@ -102,8 +94,7 @@ class Graph
 
 // 初始化
 template<class type>
-Graph<type>::Graph(int _start)
-{
+Graph<type>::Graph(int _start) {
     start = _start;
     memset(dis, 0x3f, sizeof(dis));
     dis[start] = 0;
@@ -111,32 +102,26 @@ Graph<type>::Graph(int _start)
 
 // 添加一条有向边
 template<class type>
-void Graph<type>::insert(int u, int v, type w)
-{
+void Graph<type>::insert(int u, int v, type w) {
     g[u].push_back(Edge<type>(u, v, w));
 }
 
 // 最短路
 // SPFA算法
 template<class type>
-type Graph<type>::spfa(int u)
-{
+type Graph<type>::spfa(int u) {
     bool vis[MAX_SIZE] = {};
     std::queue<int> q;
     q.push(start);
     vis[start] = true;
-    while (!q.empty())
-    {
+    while (!q.empty()) {
         int now = q.front();
         q.pop();
-        for (int i = 0; i < int(g[now].size()); ++i)
-        {
+        for (int i = 0; i < int(g[now].size()); ++i) {
             Edge<type> e = g[now][i];
-            if (dis[e.to] > dis[now] + e.dis)
-            {
+            if (dis[e.to] > dis[now] + e.dis) {
                 dis[e.to] = dis[now] + e.dis;
-                if (!vis[e.to])
-                {
+                if (!vis[e.to]) {
                     q.push(e.to);
                     vis[e.to] = true;
                 }
@@ -149,23 +134,18 @@ type Graph<type>::spfa(int u)
 // 最短路
 // Dijkstra算法
 template<class type>
-type Graph<type>::dijkstra(int u)
-{
+type Graph<type>::dijkstra(int u) {
     bool vis[MAX_SIZE] = {};
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> q;
     q.push(std::make_pair(0, start));
-    while (!q.empty())
-    {
+    while (!q.empty()) {
         int now = q.top().second;
         q.pop();
-        if (!vis[now])
-        {
+        if (!vis[now]) {
             vis[now] = true;
-            for (int i = 0; i < int(g[now].size()); ++i)
-            {
+            for (int i = 0; i < int(g[now].size()); ++i) {
                 Edge<type> e = g[now][i];
-                if (dis[e.to] > dis[now] + e.dis)
-                {
+                if (dis[e.to] > dis[now] + e.dis) {
                     dis[e.to] = dis[now] + e.dis;
                     q.push(std::make_pair(dis[e.to], e.to));
                 }
@@ -176,14 +156,12 @@ type Graph<type>::dijkstra(int u)
 }
 
 // 测试
-int main()
-{
+int main() {
     int m, n, s;
     scanf("%d %d %d", &m, &n, &s);
     Floyd<int> floyd(m);
     Graph<int> g(s);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int u, v, w;
         scanf("%d %d %d", &u, &v, &w);
         floyd.insert(u, v, w);

@@ -6,10 +6,8 @@
 #include <bits/stdc++.h>
 
 // 扩展欧几里得算法
-long long exgcd(long long a, long long b, long long &x, long long &y)
-{
-    if (b == 0)
-    {
+long long exgcd(long long a, long long b, long long &x, long long &y) {
+    if (b == 0) {
         x = 1, y = 0;
         return a;
     }
@@ -20,8 +18,7 @@ long long exgcd(long long a, long long b, long long &x, long long &y)
 }
 
 // 线性同余方程
-long long eq(long long a, long long b, long long c, long long &x, long long &y)
-{
+long long eq(long long a, long long b, long long c, long long &x, long long &y) {
     long long d = exgcd(a, c, x, y);
     if (b % d != 0)
         return -1;
@@ -31,8 +28,7 @@ long long eq(long long a, long long b, long long c, long long &x, long long &y)
 }
 
 // 乘法逆元
-long long inv(long long a, long long p)
-{
+long long inv(long long a, long long p) {
     long long power = p - 2, res = 1;
     for (; power != 0; power >>= 1, a = (a * a) % p)
         if (power & 1)
@@ -41,8 +37,7 @@ long long inv(long long a, long long p)
 }
 
 // 测试
-int main()
-{
+int main() {
     long long a, b, c, x, y;
     scanf("%lld %lld %lld", &a, &b, &c);
 

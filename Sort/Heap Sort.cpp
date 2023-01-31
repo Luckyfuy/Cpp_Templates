@@ -10,8 +10,7 @@ const int MAX_SIZE = 100000;
 
 // 大根堆
 template<class type>
-class Heap
-{
+class Heap {
     private:
         // 元素
         type ele[MAX_SIZE];
@@ -35,41 +34,35 @@ class Heap
 
 // 返回左子节点位置
 template<class type>
-int Heap<type>::le(int n)
-{
+int Heap<type>::le(int n) {
     return n * 2;
 }
 // 返回右子节点位置
 template<class type>
-int Heap<type>::rt(int n)
-{
+int Heap<type>::rt(int n) {
     return n * 2 + 1;
 }
 // 返回父节点位置
 template<class type>
-int Heap<type>::dad(int n)
-{
+int Heap<type>::dad(int n) {
     return n / 2;
 }
 
 // 初始化
 template<class type>
-Heap<type>::Heap()
-{
+Heap<type>::Heap() {
     tot = 0;
 }
 
 // 把元素压入堆
 template<class type>
-bool Heap<type>::push(type e)
-{
+bool Heap<type>::push(type e) {
     if (tot == MAX_SIZE - 1)
         return false;
     ele[++tot] = e;
 
     // 自下而上调整
-    for (int i = tot; i != 1; i = dad(i))
-    {
+    for (int i = tot; i != 1; i = dad(i)) {
         if (ele[i] > ele[dad(i)])
             std::swap(ele[i], ele[dad(i)]);
         else
@@ -80,19 +73,16 @@ bool Heap<type>::push(type e)
 
 // 删除根节点元素
 template<class type>
-bool Heap<type>::pop()
-{
+bool Heap<type>::pop() {
     if (empty())
         return false;
     std::swap(ele[1], ele[tot]);
     ele[tot--] = 0;
 
     // 自上而下调整
-    for (int i = 1; ; )
-    {
+    for (int i = 1; ; ) {
         int tar = (ele[le(i)] > ele[rt(i)] ? le(i) : rt(i));
-        if (ele[i] < ele[tar])
-        {
+        if (ele[i] < ele[tar]) {
             std::swap(ele[i], ele[tar]);
             i = tar;
         }
@@ -104,43 +94,37 @@ bool Heap<type>::pop()
 
 // 是否为空堆
 template<class type>
-bool Heap<type>::empty()
-{
+bool Heap<type>::empty() {
     return tot == 0;
 }
 
 // 返回根节点元素
 template<class type>
-type Heap<type>::top()
-{
+type Heap<type>::top() {
     return ele[1];
 }
 
 // 返回节点个数
 template<class type>
-int Heap<type>::size()
-{
+int Heap<type>::size() {
     return tot;
 }
 
 // 堆排序
 template<class type>
-void HeapSort(std::vector<type> &num)
-{
+void HeapSort(std::vector<type> &num) {
     Heap<type> hp;
     for (int i = 0; i < int(num.size()); ++i)
         hp.push(num[i]);
 
-    for (int i = int(num.size()) - 1; i >= 0; --i)
-    {
+    for (int i = int(num.size()) - 1; i >= 0; --i) {
         num[i] = hp.top();
         hp.pop();
     }
 }
 
 // 测试
-int main()
-{
+int main() {
     int n;
     std::vector<int> num;
     while (scanf("%d", &n))

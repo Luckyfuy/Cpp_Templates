@@ -9,8 +9,7 @@
 const int MAX_SIZE = 100000;
 
 // 0-1背包
-int zeroOne()
-{
+int zeroOne() {
     int n, W, w[MAX_SIZE], v[MAX_SIZE], f[MAX_SIZE] = {};
     scanf("%d %d", &n, &W);
     for (int i = 1; i <= n; ++i)
@@ -22,8 +21,7 @@ int zeroOne()
     return f[W];
 }
 // 完全背包
-int complete()
-{
+int complete() {
     int n, W, w[MAX_SIZE], v[MAX_SIZE], f[MAX_SIZE] = {};
     scanf("%d %d", &n, &W);
     for (int i = 1; i <= n; ++i)
@@ -35,22 +33,18 @@ int complete()
     return f[W];
 }
 // 多重背包
-int multiple()
-{
+int multiple() {
     int n, W, tot = 0, w[MAX_SIZE], v[MAX_SIZE], f[MAX_SIZE] = {};
     scanf("%d %d", &n, &W);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int a, b, c;
         scanf("%d %d %d", &a, &b, &c);
-        for (int j = 1; j <= c; j <<= 1)
-        {
+        for (int j = 1; j <= c; j <<= 1) {
             v[++tot] = j * a;
             w[tot] = j * b;
             c -= j;
         }
-        if (c)
-        {
+        if (c) {
             v[++tot] = c * a;
             w[tot] = c * b;
         }
@@ -63,13 +57,11 @@ int multiple()
 }
 
 // 测试
-int main()
-{
+int main() {
     int n;
     scanf("%d", &n);
 
-    switch (n)
-    {
+    switch (n) {
         case 1:
             printf("%d\n", zeroOne());
             break;

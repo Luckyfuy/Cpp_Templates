@@ -7,16 +7,14 @@
 
 // 边
 template<class type>
-struct Edge
-{
+struct Edge {
     // 起点、终点、边权
     int from, to;
     type dis;
 
     // 构造函数
     Edge() {}
-    Edge(int _from, int _to, type _dis)
-    {
+    Edge(int _from, int _to, type _dis) {
         from = _from;
         to = _to;
         dis = _dis;
@@ -28,8 +26,7 @@ const int MAX_SIZE = 50000;
 
 // 图
 template<class type>
-class Kruskal
-{
+class Kruskal {
     private:
         // 点、边的数量
         int node, edge, tot;
@@ -53,15 +50,13 @@ class Kruskal
 
 // 按权值排序
 template<class type>
-bool Kruskal<type>::cmp(Edge<type> a, Edge<type> b)
-{
+bool Kruskal<type>::cmp(Edge<type> a, Edge<type> b) {
     return a.dis < b.dis;
 }
 
 // 查询点u
 template<class type>
-int Kruskal<type>::find(int u)
-{
+int Kruskal<type>::find(int u) {
     if (fa[u] == u)
         return u;
     return fa[u] = find(fa[u]);
@@ -69,8 +64,7 @@ int Kruskal<type>::find(int u)
 
 // 初始化
 template<class type>
-Kruskal<type>::Kruskal(int _node, int _edge)
-{
+Kruskal<type>::Kruskal(int _node, int _edge) {
     node = _node;
     edge = _edge;
     tot = 0;
@@ -78,8 +72,7 @@ Kruskal<type>::Kruskal(int _node, int _edge)
 
 // 添加一条无向边
 template<class type>
-void Kruskal<type>::insert(int u, int v, type w)
-{
+void Kruskal<type>::insert(int u, int v, type w) {
     ++tot;
     g[tot].from = u;
     g[tot].to = v;
@@ -89,19 +82,16 @@ void Kruskal<type>::insert(int u, int v, type w)
 // 最小生成树
 // Kruskal算法
 template<class type>
-type Kruskal<type>::kruskal()
-{
+type Kruskal<type>::kruskal() {
     type w = 0;
     int tot = 0;
     std::sort(g + 1, g + edge + 1, cmp);
     for (int i = 1; i <= node; ++i)
         fa[i] = i;
 
-    for (int i = 1; i <= edge; ++i)
-    {
+    for (int i = 1; i <= edge; ++i) {
         Edge<type> e = g[i];
-        if (find(e.from) != find(e.to))
-        {
+        if (find(e.from) != find(e.to)) {
             w += g[i].dis;
             fa[find(e.from)] = find(e.to);
         }
@@ -113,8 +103,7 @@ type Kruskal<type>::kruskal()
 
 // 图
 template<class type>
-class Prim
-{
+class Prim {
     private:
         // 点、边的数量
         int node, edge;
@@ -132,16 +121,14 @@ class Prim
 
 // 初始化
 template<class type>
-Prim<type>::Prim(int _node, int _edge)
-{
+Prim<type>::Prim(int _node, int _edge) {
     node = _node;
     edge = _edge;
 }
 
 // 添加一条无向边
 template<class type>
-void Prim<type>::insert(int u, int v, type w)
-{
+void Prim<type>::insert(int u, int v, type w) {
     g[u].push_back(Edge<type>(u, v, w));
     g[v].push_back(Edge<type>(v, u, w));
 }
@@ -149,15 +136,13 @@ void Prim<type>::insert(int u, int v, type w)
 // 最小生成树
 // Prim算法
 template<class type>
-type Prim<type>::prim()
-{
+type Prim<type>::prim() {
     const int INF = 0x3f3f3f3f;
 
     type w = 0, dis[node];
     int now = 1;
     bool vis[node];
-    for (int i = 2; i <= node; ++i)
-    {
+    for (int i = 2; i <= node; ++i) {
         vis[i] = false;
 
         dis[i] = INF;
@@ -166,14 +151,11 @@ type Prim<type>::prim()
                 dis[i] = std::min(dis[i], g[i][j].dis);
     }
 
-    for (int i = 1; i < node; ++i)
-    {
+    for (int i = 1; i < node; ++i) {
         type minn = INF;
         vis[now] = true;
-        for (int j = 1; j <= node; ++j)
-        {
-            if (!vis[j] && minn > dis[j])
-            {
+        for (int j = 1; j <= node; ++j) {
+            if (!vis[j] && minn > dis[j]) {
                 minn = dis[j];
                 now = j;
             }
@@ -188,14 +170,12 @@ type Prim<type>::prim()
 }
 
 // 测试
-int main()
-{
+int main() {
     int m, n;
     scanf("%d %d", &m, &n);
     Kruskal<int> g1(m, n);
     Prim<int> g2(m, n);
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int u, v, w;
         scanf("%d %d %d", &u, &v, &w);
         g1.insert(u, v, w);

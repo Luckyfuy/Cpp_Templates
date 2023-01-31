@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
-int main()
-{
+int main() {
 
     setbuf(stdin, nullptr);
     getchar();

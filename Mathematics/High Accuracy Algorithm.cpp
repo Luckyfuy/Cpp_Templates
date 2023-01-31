@@ -8,15 +8,13 @@
 // 最大位数
 const int MAX_DIGIT = 1000;
 // 补齐0到最大位数
-inline void zero(std::string &a)
-{
+inline void zero(std::string &a) {
     while (a.size() < MAX_DIGIT)
         a = '0' + a;
 }
 
 // 清除所有前导0
-inline void clear(std::string &a)
-{
+inline void clear(std::string &a) {
     while (a.size() > 0 && a[0] == '0')
         a.erase(0, 1);
     if (a == "")
@@ -24,8 +22,7 @@ inline void clear(std::string &a)
 }
 
 // 判断a是否大于b
-bool isBigger(std::string a, std::string b)
-{
+bool isBigger(std::string a, std::string b) {
     clear(a);
     clear(b);
 
@@ -38,18 +35,15 @@ bool isBigger(std::string a, std::string b)
 }
 
 // 加法，a+b
-std::string add(std::string a, std::string b)
-{
+std::string add(std::string a, std::string b) {
     zero(a);
     zero(b);
 
     // 按位相加
-    for (int i = a.size() - 1; i >= 0; --i)
-    {
+    for (int i = a.size() - 1; i >= 0; --i) {
         a[i] = a[i] + b[i] - '0';
         // 若结果大于9，则进位
-        if (a[i] > '9')
-        {
+        if (a[i] > '9') {
             a[i] -= 10;
             a[i - 1] += 1;
         }
@@ -60,28 +54,24 @@ std::string add(std::string a, std::string b)
 }
 
 // 减法，a-b
-std::string sub(std::string a, std::string b)
-{
+std::string sub(std::string a, std::string b) {
     zero(a);
     zero(b);
 
     // 若被减数小于减数，则交换被减数和减数
     bool aBigger = true;
-    if (a < b)
-    {
+    if (a < b) {
         aBigger = false;
 
         std::swap(a, b);
     }
 
     // 按位相减
-    for (int i = a.size() - 1; i >= 0; --i)
-    {
+    for (int i = a.size() - 1; i >= 0; --i) {
         if (a[i] >= b[i])
             a[i] -= b[i] - '0';
         // 若被减数的取位小于减数，则借位
-        else
-        {
+        else {
             a[i] += 10;
             a[i - 1] -= 1;
             a[i] -= b[i] - '0';
@@ -97,8 +87,7 @@ std::string sub(std::string a, std::string b)
 
 // 乘法，a*b
 // 依赖加法
-std::string multi(std::string a, std::string b)
-{
+std::string multi(std::string a, std::string b) {
     std::string result = "0";
 
     // 若a的位数小于b，则交换a和b
@@ -106,8 +95,7 @@ std::string multi(std::string a, std::string b)
         std::swap(a, b);
 
     // 将乘法转换为加法
-    for (int i = b.size() - 1; i >= 0; --i)
-    {
+    for (int i = b.size() - 1; i >= 0; --i) {
         for (int j = 0; j < b[i] - '0'; ++j)
             result = add(result, a);
         a += '0';
@@ -119,8 +107,7 @@ std::string multi(std::string a, std::string b)
 
 // 除法，a/b
 // 依赖减法
-std::string divide(std::string a, std::string b)
-{
+std::string divide(std::string a, std::string b) {
     clear(a);
     clear(b);
 
@@ -131,13 +118,11 @@ std::string divide(std::string a, std::string b)
     std::string result = "", remainder = "";
 
     // 从高位开始除
-    for (int i = 0; i < int(a.size()); ++i)
-    {
+    for (int i = 0; i < int(a.size()); ++i) {
         remainder += a[i];
         result += '0';
         // 若取位不小于被除数，则用减法求商
-        while (isBigger(remainder, b))
-        {
+        while (isBigger(remainder, b)) {
             ++result[result.size() - 1];
             remainder = sub(remainder, b);
         }
@@ -150,8 +135,7 @@ std::string divide(std::string a, std::string b)
 // 求余，a%b
 // 依赖减法
 // 算法同除法，但最后返回余数
-std::string mod(std::string a, std::string b)
-{
+std::string mod(std::string a, std::string b) {
     clear(a);
     clear(b);
 
@@ -160,12 +144,10 @@ std::string mod(std::string a, std::string b)
 
     std::string result = "", remainder = "";
 
-    for (int i = 0; i < int(a.size()); ++i)
-    {
+    for (int i = 0; i < int(a.size()); ++i) {
         remainder += a[i];
         result += '0';
-        while (isBigger(remainder, b))
-        {
+        while (isBigger(remainder, b)) {
             ++result[result.size() - 1];
             remainder = sub(remainder, b);
         }
@@ -176,8 +158,7 @@ std::string mod(std::string a, std::string b)
 }
 
 // 测试
-int main()
-{
+int main() {
     std::string a, b;
     std::cin >> a >> b;
 

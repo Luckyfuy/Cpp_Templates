@@ -10,8 +10,7 @@ const int MAX_SIZE = 100000;
 
 // 链式队列
 template<class type>
-class Queue
-{
+class Queue {
     private:
         // 元素
         type ele[MAX_SIZE];
@@ -33,15 +32,13 @@ class Queue
 
 // 初始化
 template<class type>
-Queue<type>::Queue()
-{
+Queue<type>::Queue() {
     fnt = end = 0;
 }
 
 // 让元素入队
 template<class type>
-bool Queue<type>::push(type e)
-{
+bool Queue<type>::push(type e) {
     if (end == MAX_SIZE - 1)
         return false;
     ele[++end] = e;
@@ -50,8 +47,7 @@ bool Queue<type>::push(type e)
 
 // 让元素出队
 template<class type>
-bool Queue<type>::pop()
-{
+bool Queue<type>::pop() {
     if (empty())
         return false;
     ele[fnt++] = 0;
@@ -60,8 +56,7 @@ bool Queue<type>::pop()
 
 // 输出队内所有元素
 template<class type>
-void Queue<type>::print()
-{
+void Queue<type>::print() {
     for (int i = fnt + 1; i <= end; ++i)
         std::cout << ele[i] << " ";
     puts("");
@@ -69,35 +64,30 @@ void Queue<type>::print()
 
 // 是否为空队列
 template<class type>
-bool Queue<type>::empty()
-{
+bool Queue<type>::empty() {
     return fnt == end;
 }
 
 // 返回队首元素
 template<class type>
-type Queue<type>::front()
-{
+type Queue<type>::front() {
     return ele[fnt + 1];
 }
 
 // 返回队内元素个数
 template<class type>
-int Queue<type>::size()
-{
+int Queue<type>::size() {
     return end - fnt;
 }
 
 // 测试
-int main()
-{
+int main() {
     Queue<int> cq;
     int n;
     while (scanf("%d", &n))
         cq.push(n);
 
-    while (!cq.empty())
-    {
+    while (!cq.empty()) {
         cq.print();
         printf("Front: %d\n", cq.front());
         printf("Size: %d\n", cq.size());
